@@ -1,0 +1,28 @@
+
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  serverless-widget-render
+
+Transform:
+- AWS::Serverless-2016-10-31
+
+Resources:
+  renderWidgetFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/widget.renderHandler
+      Runtime: nodejs12.x
+      MemorySize: 128
+      Timeout: 100
+      Description: Render widget using given handlebar template
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
+ 
+Outputs:
+  WebEndpoint:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"

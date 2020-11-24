@@ -1,0 +1,20 @@
+{
+    "name": "widget-render",
+    "description": "widget-render",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "aws-sdk": "^2.437.0",
+        "handlebars": "^4.7.6",
+        "jsonschema": "^1.4.0",
+        "lodash": "^4.17.20",
+        "sanitize-html": "^2.1.2",
+        "superagent": "^6.1.0"
+    },
+    "devDependencies": {
+        "jest": "^24.7.1"
+    },
+    "scripts": {
+        "test": "jest"
+    }
+}

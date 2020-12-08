@@ -11,10 +11,18 @@
         "sanitize-html": "^2.1.2",
         "superagent": "^6.1.0"
     },
-    "devDependencies": {
-        "jest": "^24.7.1"
-    },
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "lint-no-fix": "eslint .",
+        "lint-fix": "eslint --fix .",
+        "clean-reinstall": "rm yarn.lock ; rm -rf node_modules && yarn install --force"
+    },
+    "devDependencies": {
+        "jest": "^24.7.1",
+        "eslint": "^6.1.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-align-assignments": "^1.1.2",
+        "babel-eslint": "^10.1.0",
+        "eslint-config-scbd": "github:scbd/eslint-config-scbd#2020.31.0"
     }
 }

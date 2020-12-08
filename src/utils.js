@@ -1,30 +1,27 @@
+function error(statusCode, message, err) {
+  console.error(message, err); // eslint-disable-line
 
-function error(statusCode, message, err){
-
-    console.error(message, err);
-
-    return {
-        statusCode : statusCode||500,
-        body : message || 'Error rendering widget'
-    }
+  return {
+    statusCode: statusCode || 500,
+    body      : message || 'Error rendering widget',
+  };
 }
 
 function HttpError(statusCode, message) {
-	this.message    = message;
-	this.statusCode = statusCode;
+  this.message    = message;
+  this.statusCode = statusCode;
 }
 
-const stringToRegex = (val)=>{
-    const regParts = val.match(/^\/(.*?)\/([gim]*)$/);
-    if (regParts) {
-        return new RegExp(regParts[1], regParts[2]);
-    } else {
-        return new RegExp(val);
-    }
-}
+const stringToRegex = (val) => {
+  const regParts = val.match(/^\/(.*?)\/([gim]*)$/);
+  if (regParts) {
+    return new RegExp(regParts[1], regParts[2]);
+  }
+  return new RegExp(val);
+};
 
-module.exports ={
-    error,
-    HttpError,
-    stringToRegex
-}
+module.exports = {
+  error,
+  HttpError,
+  stringToRegex,
+};

@@ -1,0 +1,82 @@
+{
+    "widget": {
+      "_id": "5fcf9fad57ed3526f2142e46",
+      "name": "test",
+      "contentType": "text/html",
+      "method": "GET",
+      "queryString": {
+        "fdg": {
+          "type": "regex",
+          "validationRegex": "/^dfsd$/"
+        },
+        "fdfdg": {
+          "type": "jsonSchema",
+          "validationJsonSchema": {
+            "name": "string"
+          }
+        }
+      },
+      "formData": {},
+      "dataSource": [
+        {
+          "name": "country",
+          "url": "https://api.cbd.int/api/v2013/countries/{{$qs.code}}",
+          "method": "GET",
+          "queryString": {
+            "code": {
+              "type": "regex",
+              "validationRegex": "/^[a-z]{2,3}$/ig"
+            },
+            "f": {
+              "type": "jsonSchema",
+              "validationJsonSchema": {
+                "name": "string"
+              }
+            }
+          }
+        },
+        {
+          "name": "countries",
+          "url": "https://api.cbd.int/api/v2013/countries",
+          "method": "POST",
+          "formData": {
+            "code": {
+              "type": "regex",
+              "validationRegex": "/^[a-z]+$/i"
+            }
+          },
+          "queryString": {
+            "ddf": {
+              "type": "jsonSchema",
+              "validationJsonSchema": {
+                "df": "df"
+              }
+            }
+          }
+        }
+      ],
+      "template": "<div>t<b>Welcome {{$ds.country.name.en}}</b></div>",
+      "meta": {
+        "modifiedBy": 15331,
+        "createdBy": 15331,
+        "modifiedOn": "2020-12-08T15:45:49.156Z",
+        "createdOn": "2020-12-08T15:45:49.156Z",
+        "version": 1
+      }
+    },
+    "$qs": {
+      "name": "blaise -fonseca",
+      "countryCode": "CA",
+      "f": {
+        "name": 1
+      },
+      "fdg": "dfsd",
+      "fdfdg": {
+        "name": "test"
+      },
+      "ddf": {
+        "df": "df"
+      },
+      "code": "CA"
+    }
+  }

@@ -11,10 +11,10 @@ const { error, stringToRegex, HttpError } = require('../utils');
 let startTime;
 let lastCall;
 
-const debug = (message) => {
+const log = (message) => {
 
     if(process.env.debug){
-        console.debug(new Date(), message, `${(((+new Date())-lastCall)/1000).toFixed(5)} secs`);
+        console.log(new Date(), message, `${(((+new Date())-lastCall)/1000).toFixed(5)} secs`);
         lastCall = +new Date()
     }
 
@@ -257,13 +257,15 @@ exports.renderHandler = async (event) => {
     throw new Error(`postMethod only accepts POST method, you tried: ${event.httpMethod} method.`);
   }
 
+  console.debug('received:', event); // eslint-disable-line
+
   // Get id and name from the body of the request
   const body = JSON.parse(event.body);
   
-  debug(body)
+  log(body)
   try {
     const widget = sanitizeWidget(body.widget);
-    debug('sanitized');
+    log('sanitized');
 
     const templateData = {
       $qs  : body.$qs||{},
@@ -278,22 +280,22 @@ exports.renderHandler = async (event) => {
       });
     }
 
-    debug('starting validation');
+    log('starting validation');
 
-    debug('widget validation');
+    log('widget validation');
     validateWidget(widget);
 
-    debug('$qs validation');
+    log('$qs validation');
     validateParams(templateData.$qs,    queryStringValidators, 'queryString');
 
-    debug('$form validation');
+    log('$form validation');
     validateParams(templateData.$form,  widget.formData, 'formData');
     
-    debug('Finished validation');
+    log('Finished validation');
 
-    debug('starting fetch data source');
+    log('starting fetch data source');
     templateData.$ds = await fetchDataSource(templateData.$qs,    templateData.$form, widget.dataSource);
-    debug('finish data source fetch');
+    log('finish data source fetch');
 
     const renderedTemplate = renderTemplate(widget.template, templateData);
 
